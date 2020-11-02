@@ -17,9 +17,12 @@ class ViewController: UIViewController {
     
     private let noImageState: UIImageView = {
         let iv = UIImageView()
-        iv.tintColor = .black
-        iv.image = UIImage(named: "noresult")
+        iv.image = UIImage(named: "noResult")
         iv.isHidden = true
+        iv.layer.shadowColor = UIColor.black.cgColor
+        iv.layer.shadowOffset = CGSize(width: 0, height: 0)
+        iv.layer.shadowRadius = 20
+        iv.layer.shadowOpacity = 0.9
         return iv
     }()
     
@@ -66,13 +69,13 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(SearchResultImageCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = .white
         
         view.addSubview(collectionView)
-        collectionView.addSubview(noImageState)
+        view.addSubview(noImageState)
         
-        noImageState.centerX(inView: collectionView)
-        noImageState.centerY(inView: collectionView)
+        noImageState.centerX(inView: view)
+        noImageState.centerY(inView: view)
         
         collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
                               bottom: view.bottomAnchor, right: view.rightAnchor)
@@ -166,9 +169,12 @@ extension ViewController: UISearchBarDelegate {
                     results.collection = item["collection"].stringValue
                     results.display_sitename = item["display_sitename"].stringValue
                     results.thumbnail_url = item["thumbnail_url"].stringValue
+                    results.image_url = item["image_url"].stringValue
                     self.result.append(results)
                 }
                 self.collectionView.reloadData()
+                
+                self.page += 1
                 
                 if self.result.isEmpty && !searchText.isEmpty {
                     self.noImageState.isHidden = false
