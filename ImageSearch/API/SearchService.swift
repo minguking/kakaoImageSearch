@@ -18,13 +18,11 @@ struct SearchService {
         
         let safeKeyWord = keyWord.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         
-        AF.request("https://dapi.kakao.com/v2/search/image?query=\(safeKeyWord)&size=10&page=1", method: .get, encoding: JSONEncoding.prettyPrinted, headers: ["Authorization": "KakaoAK \(myKey)"]).responseJSON { response in
+        AF.request("https://dapi.kakao.com/v2/search/image?query=\(safeKeyWord)&size=50&page=1", method: .get, encoding: JSONEncoding.prettyPrinted, headers: ["Authorization": "KakaoAK \(myKey)"]).responseJSON { response in
             switch response.result {
             case .success(let json):
                 
                 print("DEBUG: data fetched successfully")
-                
-                
                 
                 let value = JSON(json)
                 completion(value)

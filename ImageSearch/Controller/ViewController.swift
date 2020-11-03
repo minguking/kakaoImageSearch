@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         return sc
     }()
     
+    private var searchText = ""
     private var page = 1
     private var isEnd: Bool = false
     
@@ -62,6 +63,7 @@ class ViewController: UIViewController {
         title = "검색을 생활화"
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         
         view.backgroundColor = .white
         
@@ -141,7 +143,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension ViewController: UISearchBarDelegate {
+extension ViewController: UISearchControllerDelegate, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("DEBUG: search button tapped")
@@ -154,9 +156,12 @@ extension ViewController: UISearchBarDelegate {
         collectionView.reloadData()
     }
     
-    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.text = searchText
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             
             self.result = []

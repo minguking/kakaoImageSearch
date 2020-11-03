@@ -23,4 +23,15 @@ struct ImageDetailViewModel {
         return URL(string: imageInfo.image_url) ?? URL(string: "")!
     }
     
+    var siteName: String {
+        return "출처: \(imageInfo.display_sitename)"
+    }
+    
+    var dateTime: String? {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy년 MM월 dd일 hh시 mm분"
+        return "작성 시간:\(formatter.string(from: imageInfo.datetime ?? Date()))"
+    }
+    
 }
