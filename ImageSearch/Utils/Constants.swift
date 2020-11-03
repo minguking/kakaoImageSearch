@@ -8,3 +8,5 @@
 import Foundation
 
 let myKey = "c3e6dd11fe721cbc853204645b204692"
+let customTextColor = "customTextColor"
+let customViewColor = "customViewColor"
