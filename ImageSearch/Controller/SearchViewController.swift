@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SearchViewController.swift
 //  ImageSearch
 //
 //  Created by Kang Mingu on 2020/11/02.
@@ -112,7 +112,6 @@ extension SearchViewController: UICollectionViewDataSource {
         cell.imageView.kf.setImage(with: URL(string: results.thumbnail_url))
         
         return cell
-        
     }
     
 }
@@ -185,6 +184,10 @@ extension SearchViewController: UISearchControllerDelegate, UISearchBarDelegate 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.pleaseSearchLabel.isHidden = true
+        
+        if searchText == "" {
+            self.result = []
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.searchText = searchText

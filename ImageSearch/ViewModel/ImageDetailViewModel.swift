@@ -12,26 +12,19 @@ import Kingfisher
 struct ImageDetailViewModel {
     
     var imageInfo: Results
-    var view: UIView
     
-    init(imageInfo: Results, view: UIView) {
+    init(imageInfo: Results) {
         self.imageInfo = imageInfo
-        self.view = view
     }
     
     var detailImageURL: URL {
         return URL(string: imageInfo.image_url) ?? URL(string: "")!
     }
     
-    var siteName: String {
-        return "출처: \(imageInfo.display_sitename)"
-    }
-    
-    var dateTime: String? {
+    var siteNameAndDate: String {
         let formatter = DateFormatter()
-        
-        formatter.dateFormat = "yyyy년 MM월 dd일 hh시 mm분"
-        return "작성 시간:\(formatter.string(from: imageInfo.datetime ?? Date()))"
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        return "출처: \(imageInfo.display_sitename)\n작성일: \(formatter.string(from: imageInfo.datetime ?? Date()))"
     }
     
 }

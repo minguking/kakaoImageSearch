@@ -15,7 +15,7 @@ class ImageDetailViewController: UIViewController {
     
     private var imageInfo: Results
     
-    lazy var detailImage: UIImageView = {
+    lazy var detailImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -23,18 +23,11 @@ class ImageDetailViewController: UIViewController {
         return iv
     }()
     
-    private let siteName: UILabel = {
+    private let siteNameAndDate: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
-        label.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        return label
-    }()
-    
-    private let dateTime: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
+        label.numberOfLines = 0
         label.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         return label
     }()
@@ -87,32 +80,25 @@ class ImageDetailViewController: UIViewController {
         
         view.backgroundColor = .black
         
-        let stack = UIStackView(arrangedSubviews: [siteName, dateTime])
-        stack.axis = .vertical
-        stack.spacing = 2
-        stack.distribution = .fillEqually
-        stack.alignment = .center
-        
         scrollView.delegate = self
         view.addSubview(scrollView)
-        scrollView.addSubview(detailImage)
+        scrollView.addSubview(detailImageView)
         view.addSubview(exitButton)
-        view.addSubview(stack)
+        view.addSubview(siteNameAndDate)
         
         scrollView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
                           bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
-        detailImage.addConstraintsToFillView(scrollView)
-        detailImage.centerY(inView: scrollView)
-        stack.centerX(inView: view)
-        stack.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
+        detailImageView.addConstraintsToFillView(scrollView)
+        detailImageView.centerY(inView: scrollView)
+        siteNameAndDate.centerX(inView: view)
+        siteNameAndDate.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
         exitButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
                           paddingTop: 12, paddingLeft: 18)
         
-        let viewModel = ImageDetailViewModel(imageInfo: imageInfo, view: view)
+        let viewModel = ImageDetailViewModel(imageInfo: imageInfo)
         
-        detailImage.kf.setImage(with: viewModel.detailImageURL)
-        siteName.text = viewModel.siteName
-        dateTime.text = viewModel.dateTime
+        detailImageView.kf.setImage(with: viewModel.detailImageURL)
+        siteNameAndDate.text = viewModel.siteNameAndDate
     }
 
 }
@@ -122,7 +108,7 @@ class ImageDetailViewController: UIViewController {
 extension ImageDetailViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return detailImage
+        return detailImageView
     }
     
 }
