@@ -22,12 +22,22 @@ import Foundation
 
 struct Results {
     
-    var collection: String = ""
-    var thumbnail_url: String = ""
-    var image_url: String = ""
-    var width: Int = 0
-    var height: Int = 0
-    var display_sitename: String = ""
-    var doc_url: String = ""
+    var collection: String
+    var thumbnail_url: String
+    var image_url: String
+    var width: Int
+    var height: Int
+    var display_sitename: String
+    var doc_url: String
     var datetime: Date?
+    
+    init(dictionary: [String: Any]) {
+        self.collection = dictionary["collection"] as? String ?? ""
+        self.thumbnail_url = dictionary["thumbnail_url"] as? String ?? ""
+        self.image_url = dictionary["image_url"] as? String ?? ""
+        self.width = dictionary["width"] as? Int ?? 0
+        self.height = dictionary["height"] as? Int ?? 0
+        self.display_sitename = dictionary["display_sitename"] as? String ?? ""
+        self.doc_url = dictionary["doc_url"] as? String ?? ""
+    }
 }

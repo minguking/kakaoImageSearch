@@ -14,14 +14,18 @@ struct SearchService {
     
     static let shared = SearchService()
     
-    func imageSearch(keyWord: String, page: Int, completion: @escaping(JSON) -> ()) {
+    func imageSearch(keyWord: String, page: Int, completion: @escaping(JSON) -> Void) {
         
         let safeKeyWord = keyWord.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        AF.request("https://dapi.kakao.com/v2/search/image?query=\(safeKeyWord)&size=30&page=\(page)", method: .get, encoding: JSONEncoding.prettyPrinted, headers: ["Authorization": "KakaoAK \(myKey)"]).responseJSON { response in
+        
+        AF.request("https://dapi.kakao.com/v2/search/image?query=\(safeKeyWord)&size=10&page=1", method: .get, encoding: JSONEncoding.prettyPrinted, headers: ["Authorization": "KakaoAK \(myKey)"]).responseJSON { response in
             switch response.result {
             case .success(let json):
                 
-                print("DEBUG: json successfully fetched")
+                print("DEBUG: data fetched successfully")
+                
+                
+                
                 let value = JSON(json)
                 completion(value)
                 

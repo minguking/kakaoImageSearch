@@ -19,6 +19,9 @@
 		3D5CACB5254FE32F00E85A76 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CACB4254FE32F00E85A76 /* Results.swift */; };
 		3D5CACB9254FE9CE00E85A76 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CACB8254FE9CE00E85A76 /* Extensions.swift */; };
 		3D5CACBC254FF4B700E85A76 /* SearchResultImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CACBB254FF4B700E85A76 /* SearchResultImageCell.swift */; };
+		3D5CACC42550325800E85A76 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CACC32550325800E85A76 /* ImageDetailViewController.swift */; };
+		3D5CACC72550456500E85A76 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CACC62550456500E85A76 /* Meta.swift */; };
+		3D5CACCA255123D600E85A76 /* ImageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CACC9255123D600E85A76 /* ImageDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		3D5CACB4254FE32F00E85A76 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		3D5CACB8254FE9CE00E85A76 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3D5CACBB254FF4B700E85A76 /* SearchResultImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultImageCell.swift; sourceTree = "<group>"; };
+		3D5CACC32550325800E85A76 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		3D5CACC62550456500E85A76 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		3D5CACC9255123D600E85A76 /* ImageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewModel.swift; sourceTree = "<group>"; };
 		489E2B819CCA334751FC1201 /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
 		E1B08219FB15B661DCA4B718 /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		EBDF3BB8548F6BCADA5D4DF7 /* Pods_ImageSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				3D5CACB4254FE32F00E85A76 /* Results.swift */,
+				3D5CACC62550456500E85A76 /* Meta.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +115,7 @@
 		3D5CACA8254FD93200E85A76 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3D5CACC9255123D600E85A76 /* ImageDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -116,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				3D5CAC88254FD5AE00E85A76 /* ViewController.swift */,
+				3D5CACC32550325800E85A76 /* ImageDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -275,6 +284,9 @@
 				3D5CAC87254FD5AE00E85A76 /* SceneDelegate.swift in Sources */,
 				3D5CACAD254FDB2E00E85A76 /* Constants.swift in Sources */,
 				3D5CACBC254FF4B700E85A76 /* SearchResultImageCell.swift in Sources */,
+				3D5CACC42550325800E85A76 /* ImageDetailViewController.swift in Sources */,
+				3D5CACC72550456500E85A76 /* Meta.swift in Sources */,
+				3D5CACCA255123D600E85A76 /* ImageDetailViewModel.swift in Sources */,
 				3D5CACB9254FE9CE00E85A76 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

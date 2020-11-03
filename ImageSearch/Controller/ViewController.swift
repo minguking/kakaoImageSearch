@@ -42,16 +42,15 @@ class ViewController: UIViewController {
         return sc
     }()
     
-    
     private var page = 1
     private var isEnd: Bool = false
     
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
     }
     
@@ -101,8 +100,6 @@ extension ViewController: UICollectionViewDataSource {
         
     }
     
-    
-    
 }
 
 extension ViewController: UICollectionViewDelegate {
@@ -127,11 +124,19 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let lastRow = collectionView.numberOfItems(inSection: 0) - 1
-        if indexPath.item == lastRow {
-            
-        }
+    //    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    //        let lastRow = collectionView.numberOfItems(inSection: 0) - 1
+    //        if indexPath.item == lastRow {
+    //
+    //        }
+    //    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("DEBUG: from vc == \(result[indexPath.item].display_sitename)")
+        let controller = ImageDetailViewController(imageInfo: result[indexPath.item])
+        controller.modalPresentationStyle = .fullScreen
+        
+        present(controller, animated: true, completion: nil)
     }
     
 }
@@ -149,22 +154,22 @@ extension ViewController: UISearchBarDelegate {
         collectionView.reloadData()
     }
     
+    
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             
             self.result = []
             self.noImageState.isHidden = true
             
-            SearchService.shared.imageSearch(keyWord: searchText, page: self.page) { json in
+            SearchService.shared.imageSearch(keyWord: searchText, page: 1) { json in
                 
-//                print("DEBUG: json === \(json["meta"]["is_end"])")
+                var meta = Meta()
                 
-                print("DEBUG: json == \(json)")
+                print("DEBUG: end page??? \(json["meta"]["is_end"])")
                 
+                var results = Results(dictionary: json["documents"].dictionaryValue)
                 
-                var results = Results()
                 for item in json["documents"].arrayValue {
                     results.collection = item["collection"].stringValue
                     results.display_sitename = item["display_sitename"].stringValue
@@ -174,8 +179,6 @@ extension ViewController: UISearchBarDelegate {
                 }
                 self.collectionView.reloadData()
                 
-                self.page += 1
-                
                 if self.result.isEmpty && !searchText.isEmpty {
                     self.noImageState.isHidden = false
                 } else if self.result.isEmpty && searchText.isEmpty {
@@ -184,4 +187,6 @@ extension ViewController: UISearchBarDelegate {
             }
         }
     }
+    
+    
 }
